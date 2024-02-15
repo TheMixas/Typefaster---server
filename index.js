@@ -1,6 +1,5 @@
 import {    app} from './app.js';
 import {createNewRoom, findPublicLobbyWithMostPlayers} from "./gameManager.js";
-const port = process.env.PORT || 5000;
 import cors from 'cors';
 import http from "http";
 import initializeSocketEvents from './socket.js';
@@ -22,9 +21,9 @@ const server = http.createServer(app);
 export const io = new Server(server, {
     cors: corsOptions
 });
-server.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+const port = process.env.PORT || 5000;
+
+server.listen(port, () => console.log(`Server is running on port ${port}`));
 initializeSocketEvents();
 
 
