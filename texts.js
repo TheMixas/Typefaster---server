@@ -1,10 +1,13 @@
 export default {
     "Default": [
         "The quick brown fox jumps over the lazy dog",
-        "ONE morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin.",
-        "It was a bright cold day in April, and the clocks were striking thirteen.",
+
+        "It was a bright cold day in April, and the clocks were striking thirteen",
+
+
+        "ONE morning, when Gregor Samsa woke from troubled dreams,he found himself transformed in his bed into a horrible vermin",
         "It was the best of times, it was the worst of times",
-"It was a queer, sultry summer, the summer they electrocuted the Rosenbergs, and I didn’t know what I was doing in New York.",
+"It was a queer, sultry summer, the summer they electrocuted the Rosenbergs, and I didn’t know what I was doing in New York",
     ],
     'Psychology': [
         "The one thing that doesn’t abide by majority rule is a person’s conscience.",

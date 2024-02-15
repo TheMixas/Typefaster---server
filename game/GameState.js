@@ -1,7 +1,7 @@
 import {io} from "../index.js";
 import {Events} from "../events.js";
 import {
-    CALCULATE_PLAYER_POSITIONS_INTERVAL,
+    CALCULATE_PLAYER_POSITIONS_INTERVAL, CHECK_PLAYERS_COMPLETED_INTERVAL,
     COUNTDOWN_TIME,
     FINISHED_TRANSITION_TO_LOBBY_TIME,
     GAME_TIME,
@@ -158,6 +158,23 @@ export class InProgressState extends GameState {
         this.game.setPlayerPositions(playerPositions);
         console.log("player positions after calcs: ", this.game.getPlayerPositions())
     }
+    //check if all players have completed the text
+    checkIfAllPlayersCompletedText(){
+        console.log("checking if all players completed text")
+        let players = this.game.getPlayers();
+        let playerCurrentWordIndexes = this.game.getPlayerCurrentWordIndexes();
+        let gameTextWordCount = ChopSentence(this.game.text).length;
+        for (const player of players) {
+            if(playerCurrentWordIndexes[player.id] < gameTextWordCount){
+                console.log("A player hasnt completed their text, returning false")
+                return;
+            }
+        }
+        //backout early
+        console.log("all players have completed their text, transitioning")
+        this.transitionState();
+    }
+
     initiateState() {
         console.log("in progress state")
         io.to(this.game.roomUID).emit(Events.SERVER_GAME_STARTED);
@@ -171,6 +188,11 @@ export class InProgressState extends GameState {
             this.calculatePlayerPositions();
         }, CALCULATE_PLAYER_POSITIONS_INTERVAL * 1000)
         this.intervalTimers.push(this.calculatePlayerPositionsInterval);
+        //check if all players have completed the text
+        this.checkPlayersCompletedInterval = setInterval(() => {
+            this.checkIfAllPlayersCompletedText();
+        }, CHECK_PLAYERS_COMPLETED_INTERVAL * 1000)
+        this.intervalTimers.push(this.checkPlayersCompletedInterval);
         //Send player positions
         this.sendPlayerPositionsInterval = setInterval(() => {
             sendPlayerPositions(this.game)

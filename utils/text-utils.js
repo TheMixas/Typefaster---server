@@ -18,6 +18,7 @@ export const  ChopSentence = (sentence) => {
         if (sentence[i] === " " || sentence[i] === "," || sentence[i] === "." || sentence[i] === "!" || sentence[i] === "?") {
             word += sentence[i]
             choppedSentence.push(word)
+            console.log("text-utils: word: ",word)
             word = ""
         } else {
             word += sentence[i]

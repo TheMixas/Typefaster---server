@@ -2,13 +2,22 @@ import express from 'express';
 //import dot env
 import dotenv from 'dotenv';
 dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+
+export const __dirname = path.dirname(__filename);
+
 import {authRouter} from './routers/authentication-router.js';
 import http from 'http';
 import cors from "cors";
 import {GetProfile} from "./db/profile-db.js";
 import {profileRouter} from "./routers/profile-router.js";
+import {GetLeaderboards} from "./db/leaderboard-db.js";
+import {leaderboardRouter} from "./routers/leaderboard-router.js";
+import path from "path";
+import {fileURLToPath} from "url";
 const allowedOrigins = [
     'http://localhost:3000',
+    //add
     'http://localhost:5000',
 ];
 
@@ -33,12 +42,23 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', authRouter);
 app.use('/api/profile', profileRouter);
+app.use('/api/leaderboards', leaderboardRouter);
 
-console.log('get profile', await GetProfile('2'));
-//Error handling
+console.log("get leaderboard: ", await GetLeaderboards())//Error handling
+
 app.use((err, req, res, next) => {
     // Handle errors
     res.status(500).send('Something went wrong!');
+});
+app.use(express.static(path.join(__dirname + '/public')));
+
+//host client
+app.get("/*", function (req, res) {
+    res.sendFile(path.join(__dirname, "/public/index.html"), function (err) {
+        if (err) {
+            res.status(500).send(err);
+        }
+    });
 });
 
 

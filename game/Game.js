@@ -188,6 +188,13 @@ export default class Game {
     getPlayerPositions(){
         return this.playerPositions;
     }
+
+    getPlayerPosition(playerID){
+        return this.playerPositions[playerID]?.position;
+    }
+    getPlayerWPM(playerID){
+        return this.playerPositions[playerID]?.wpm;
+    }
     setPlayerPositions(positions){
         this.playerPositions = {...this.playerPositions, ...positions};
     }
