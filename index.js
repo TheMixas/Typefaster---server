@@ -21,7 +21,7 @@ const server = http.createServer(app);
 export const io = new Server(server, {
     cors: corsOptions
 });
-const port = process.env.PORT || 5000;
+let port = process.env.PORT || 5000;
 
 server.listen(port, () => console.log(`Server is running on port ${port}`));
 initializeSocketEvents();
