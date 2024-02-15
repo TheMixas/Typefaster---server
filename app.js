@@ -15,11 +15,10 @@ import {GetLeaderboards} from "./db/leaderboard-db.js";
 import {leaderboardRouter} from "./routers/leaderboard-router.js";
 import path from "path";
 import {fileURLToPath} from "url";
-const allowedOrigins = [
-    'http://localhost:3000',
-    //add
-    'http://localhost:5000',
-];
+const allowedOrigins = process.env.NODE_ENV === 'production'? [
+    'https://typefaster-365700105134.herokuapp.com'
+] : ['http://localhost:3000',
+    'http://localhost:5000',];
 
 export const app = express();
 app.use(cors({
