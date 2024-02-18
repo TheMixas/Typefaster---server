@@ -11,12 +11,10 @@ profileRouter.get('/:username', async (req, res) => {
 
         //check if user exists
         let user = await getUserByUsername(username);
-        console.log("profile-router.js /:username User: ", user);
         if(user === undefined){
             return res.status(404).send("User not found");
         }
         const profile = await GetProfile(username);
-        console.log("Profile: ", profile);
 
         return res.status(200).send(profile);
     }catch (e) {

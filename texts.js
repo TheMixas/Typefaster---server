@@ -17,7 +17,7 @@ export default {
         "Nameless here for evermore.",
     ],
     'Psychology': [
-        "The one thing that doesn’t abide by majority rule is a person’s conscience.",
+        "The one thing that doesn't abide by majority rule is a person's conscience.",
         "There is nothing either good or bad, but thinking makes it so.",
         "Hell is other people.",
         "The unexamined life is not worth living.",

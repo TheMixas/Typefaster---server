@@ -21,7 +21,9 @@ export const GetProfile = async (username) => {
       (SELECT JSON_ARRAYAGG(JSON_OBJECT('position', gs.user_position, 'wpm', gs.user_wpm, 'theme', g.text_theme))
        FROM game_stats gs
               JOIN games g ON g.id = gs.game_id
-       WHERE gs.user_id = u.id) as playerGames,
+            WHERE gs.user_id = u.id
+            ORDER BY gs.created_at 
+            ) as playerGames,
       JSON_ARRAYAGG(JSON_ARRAY(gd.text_theme, gd.count)) as genreDistribution,
       (SELECT AVG(gs.user_wpm) FROM game_stats gs WHERE gs.user_id = u.id) as wpm
     FROM users u

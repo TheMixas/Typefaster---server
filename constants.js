@@ -3,7 +3,7 @@ export const COUNTDOWN_TIME = 3;
 export const LOBBY_TRANSITION_TO_COUNTDOWN_TIME = 3;
 
 export const THEME_SELECTION_TIME = 5;
-export const GAME_TIME = 120;
+export const GAME_TIME = 60;
 export const FINISHED_TRANSITION_TO_LOBBY_TIME = 10;
 
 /* INTERVALS */

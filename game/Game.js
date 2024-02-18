@@ -193,6 +193,7 @@ export default class Game {
         return this.playerPositions[playerID]?.position;
     }
     getPlayerWPM(playerID){
+        console.log("playerPositions before getting player wpm: ", this.playerPositions)
         return this.playerPositions[playerID]?.wpm;
     }
     setPlayerPositions(positions){

@@ -43,7 +43,6 @@ app.use('/api/auth', authRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/leaderboards', leaderboardRouter);
 
-console.log("get leaderboard: ", await GetLeaderboards())//Error handling
 
 app.use((err, req, res, next) => {
     // Handle errors
